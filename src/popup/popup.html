@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clarify</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header>
+      <div>
+        <p class="eyebrow">Clarify</p>
+        <h1>Cleaner prompts.</h1>
+      </div>
+    </header>
+    <label class="toggle-row">
+      <span><strong>Clarify before sending</strong><small id="gemini-status">Loading settings…</small></span>
+      <input id="enabled" type="checkbox">
+      <span class="switch" aria-hidden="true"></span>
+    </label>
+    <label class="toggle-row">
+      <span><strong>Show button on page</strong><small id="button-status">Loading settings…</small></span>
+      <input id="show-button" type="checkbox">
+      <span class="switch" aria-hidden="true"></span>
+    </label>
+    <p id="connection-status" class="status"><span id="connection-dot" class="status-dot" aria-hidden="true"></span><span id="connection-text">Loading settings…</span></p>
+    <button id="open-options" class="options-button" type="button">Open settings <span aria-hidden="true">↗</span></button>
+  </main>
+  <script src="../core/settings.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

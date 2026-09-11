@@ -1,0 +1,56 @@
+{
+  "manifest_version": 3,
+  "name": "Clarify",
+  "version": "0.1.0",
+  "description": "Correct grammar in AI prompts before they are submitted.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://chat.qwen.ai/*",
+    "https://chat.deepseek.com/*",
+    "https://generativelanguage.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*",
+        "https://chat.qwen.ai/*",
+        "https://chat.deepseek.com/*"
+      ],
+      "js": [
+        "src/core/settings.js",
+        "src/core/segment.js",
+        "src/core/diagnostics.js",
+        "src/core/gemini.js",
+        "src/content/composer.js",
+        "src/content/undo.js",
+        "src/content/fix-button.js",
+        "src/content/content.js",
+        "src/content/events.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "Clarify",
+    "default_popup": "src/popup/popup.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

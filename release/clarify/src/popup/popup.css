@@ -1,0 +1,27 @@
+:root {
+  color-scheme: light;
+  font-family: "SF Pro Display", "Geist Sans", "Helvetica Neue", sans-serif;
+  color: #1c2b36;
+  background: #f3f8fc;
+}
+
+* { box-sizing: border-box; }
+body { width: 300px; margin: 0; background: #f3f8fc; }
+.popup { padding: 24px; }
+header { display: flex; align-items: center; gap: 12px; padding-bottom: 22px; border-bottom: 1px solid #dce8ef; }
+.mark { display: grid; width: 34px; height: 34px; place-items: center; border-radius: 6px; background: #2b6f99; color: #ffffff; font: 800 11px/1 "Geist Mono", "SF Mono", monospace; letter-spacing: -.04em; }
+.eyebrow { margin: 0 0 3px; color: #787774; font-family: "Geist Mono", "SF Mono", monospace; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+h1 { margin: 0; color: #1c2b36; font-family: "Newsreader", "Playfair Display", Georgia, serif; font-size: 21px; font-weight: 500; letter-spacing: -.03em; }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 22px; padding: 15px 0; border-bottom: 1px solid #dce8ef; cursor: pointer; }
+.toggle-row strong, .toggle-row small { display: block; }
+.toggle-row strong { color: #1c2b36; font-size: 12px; }
+.toggle-row small { max-width: 170px; margin-top: 5px; color: #787774; font-size: 10px; line-height: 1.45; }
+.toggle-row input { position: absolute; opacity: 0; }
+.switch { position: relative; flex: 0 0 auto; width: 38px; height: 22px; border: 1px solid #d0d0cc; border-radius: 999px; background: #e7e6e2; transition: background .15s ease; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 14px; height: 14px; border-radius: 50%; background: #ffffff; transition: transform .15s ease; }
+.toggle-row input:checked ~ .switch { border-color: #2b6f99; background: #2b6f99; }
+.toggle-row input:checked ~ .switch::after { transform: translateX(16px); }
+.status { min-height: 30px; margin: 14px 0 0; color: #787774; font-size: 10px; line-height: 1.45; }
+.options-button { width: 100%; height: 38px; margin-top: 7px; border: 1px solid #2b6f99; border-radius: 5px; background: #2b6f99; color: #ffffff; font: 700 11px/1 "SF Pro Display", "Geist Sans", sans-serif; cursor: pointer; }
+.options-button:hover { background: #245d80; }
+.options-button:active { transform: scale(.98); }

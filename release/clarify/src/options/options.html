@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clarify settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="settings-shell">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Clarify</p>
+        <h1>Correct prompts before they are sent.</h1>
+        <p class="lede">Gemini corrects grammar and clarifies wording while preserving the prompt’s original language.
+      </div>
+      <span class="version">v0.1.0</span>
+    </header>
+
+    <form id="settings-form" novalidate>
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 · Behavior</p>
+            <h2>Gemini correction</h2>
+          </div>
+          <label class="switch-row">
+            <input id="enabled" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+            <span>Extension enabled</span>
+          </label>
+        </div>
+
+        <p class="field-help">Gemini is the only correction service. If it is unavailable, the original prompt is preserved and submitted unchanged.</p>
+
+        <label class="field">
+          <span class="field-label">Gemini request timeout</span>
+          <span class="range-row">
+            <input id="timeout" type="range" min="1" max="10" step="1">
+            <output id="timeout-value">5 seconds</output>
+          </span>
+          <span class="field-help">If Gemini does not answer in time, the message is sent without correction.</span>
+        </label>
+
+        <label class="field">
+          <span class="field-label">System prompt</span>
+          <textarea id="system-prompt" rows="7" spellcheck="false"></textarea>
+          <span class="field-help">This instruction is visible and editable. Your text changes the clarification guidance; required language preservation, protected-content, prompt-data, and JSON-output rules are always appended.</span>
+          <div class="button-row prompt-actions">
+            <button id="reset-system-prompt" class="button secondary" type="button">Restore default</button>
+          </div>
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 · Gemini connection</p>
+            <h2>Use your own API key</h2>
+          </div>
+          <span id="connection-badge" class="badge">Not tested</span>
+        </div>
+
+        <label class="field">
+          <span class="field-label">Gemini API key</span>
+          <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Gemini API key">
+          <span class="field-help">The key is stored only in this extension copy's local storage and is never sent to the page or committed to this project. If you switch between source and release folders, save the key again in the active copy.</span>
+        </label>
+        <div class="button-row">
+          <button id="test-connection" class="button secondary" type="button">Detect available models</button>
+          <span id="detected-model" class="connection-detail" role="status"></span>
+        </div>
+        <p class="privacy-callout">Models are detected automatically from the key. The extension chooses the fastest compatible Gemini model; no model selection is required.</p>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">03 · Supported sites</p>
+            <h2>Where should it run?</h2>
+          </div>
+        </div>
+        <div class="site-grid">
+          <label class="site-row"><input id="site-chatgpt" type="checkbox"><span><strong>ChatGPT</strong><small>chatgpt.com and chat.openai.com</small></span></label>
+          <label class="site-row"><input id="site-gemini" type="checkbox"><span><strong>Gemini</strong><small>gemini.google.com</small></span></label>
+          <label class="site-row"><input id="site-qwen" type="checkbox"><span><strong>Qwen</strong><small>chat.qwen.ai</small></span></label>
+          <label class="site-row"><input id="site-deepseek" type="checkbox"><span><strong>DeepSeek</strong><small>chat.deepseek.com</small></span></label>
+        </div>
+      </section>
+
+      <footer class="form-footer">
+        <span id="save-status" role="status"></span>
+        <button class="button primary" type="submit">Save settings</button>
+      </footer>
+    </form>
+
+    <p class="fine-print">Use the Clarify button for an explicit rewrite, or submit normally for correction before sending. Code blocks, URLs, placeholders, and quoted text are protected.</p>
+  </main>
+  <script src="../core/settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Secrets — never commit keys or credentials
+.env
+.env.*
+*.pem
+*.key
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and tool local state
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local backups and stray captures
+*.bak
+*.tmp

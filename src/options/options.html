@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clarify Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <span class="nav-title">Clarify <span class="nav-version">v1.0.0</span></span>
+      <span class="nav-action">
+        <span id="save-status" role="status"></span>
+        <button class="button-save" type="submit" form="settings-form">Save</button>
+      </span>
+    </div>
+  </div>
+
+  <main class="settings-shell">
+    <header class="page-header">
+      <h1>Say it right before you send it.</h1>
+      <p class="lede">Clarify rewrites each prompt for maximum clarity with Gemini before it is submitted. Your language is preserved; code, links, and quotes are never touched.</p>
+    </header>
+
+    <form id="settings-form" novalidate>
+      <section class="group" aria-labelledby="connection-title">
+        <h2 class="group-title" id="connection-title">Gemini Connection</h2>
+        <div class="card">
+          <div class="row row-stack">
+            <label class="row-label" for="api-key">API Key</label>
+            <span class="key-row">
+              <input id="api-key" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Gemini API key">
+              <button id="reveal-key" class="button-text" type="button" aria-pressed="false" aria-label="Show API key">Show</button>
+            </span>
+          </div>
+          <div class="row row-button-row">
+            <button id="test-connection" class="button-text" type="button">Detect Available Models</button>
+          </div>
+          <div class="row row-status">
+            <span id="connection-badge" class="badge">Not tested</span>
+            <span id="detected-model" class="connection-detail" role="status"></span>
+          </div>
+        </div>
+        <p class="group-footer">The key stays in this copy&rsquo;s local storage and is never sent to the page. Models are detected automatically; Clarify picks the fastest compatible Gemini model.</p>
+      </section>
+
+      <section class="group" aria-labelledby="power-title">
+        <h2 class="group-title" id="power-title">Clarification</h2>
+        <div class="card">
+          <label class="row switch-row">
+            <span class="row-text"><strong>Clarify Before Sending</strong><small>Prompts are rewritten before submission. If Gemini is unavailable, the original is sent unchanged.</small></span>
+            <input id="enabled" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="behavior-title">
+        <h2 class="group-title" id="behavior-title">Request</h2>
+        <div class="card">
+          <div class="row row-stack">
+            <span class="row-line">
+              <label class="row-label" for="timeout">Request Timeout</label>
+              <output id="timeout-value" for="timeout">5 s</output>
+            </span>
+            <input id="timeout" type="range" min="1" max="10" step="1" aria-describedby="timeout-help">
+            <span class="row-help" id="timeout-help">If Gemini does not answer in time, the message is sent without clarification.</span>
+          </div>
+          <div class="row row-stack">
+            <span class="row-line">
+              <label class="row-label" for="system-prompt">System Prompt</label>
+              <span class="row-tag">Editable</span>
+            </span>
+            <textarea id="system-prompt" rows="6" spellcheck="false"></textarea>
+            <span class="row-help">Your text changes the guidance; language preservation, protected-content, and JSON-output rules are always appended.</span>
+          </div>
+          <div class="row row-button-row">
+            <button id="reset-system-prompt" class="button-text" type="button">Restore Default Prompt</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="interface-title">
+        <h2 class="group-title" id="interface-title">On-Page Button</h2>
+        <div class="card">
+          <label class="row switch-row">
+            <span class="row-text"><strong>Show Clarify Button</strong><small>Hidden by default. Adds a manual button beside the composer that rewrites without submitting.</small></span>
+            <input id="show-button" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <div class="row row-preview">
+            <span class="pill-preview" aria-hidden="true"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.2 13.8 6.7 4.2h1.5l3.5 9.6M4.5 10.6h5.9M11.8 11.6l1.5 1.5 2.7-3.3"/></svg>Clarify</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="group" aria-labelledby="sites-title">
+        <h2 class="group-title" id="sites-title">Supported Sites</h2>
+        <div class="card">
+          <label class="row switch-row">
+            <span class="row-text site-text"><i class="site-dot site-dot--chatgpt" aria-hidden="true"></i><span><strong>ChatGPT</strong><small>chatgpt.com and chat.openai.com</small></span></span>
+            <input id="site-chatgpt" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="row switch-row">
+            <span class="row-text site-text"><i class="site-dot site-dot--gemini" aria-hidden="true"></i><span><strong>Gemini</strong><small>gemini.google.com</small></span></span>
+            <input id="site-gemini" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="row switch-row">
+            <span class="row-text site-text"><i class="site-dot site-dot--qwen" aria-hidden="true"></i><span><strong>Qwen</strong><small>chat.qwen.ai</small></span></span>
+            <input id="site-qwen" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+          <label class="row switch-row">
+            <span class="row-text site-text"><i class="site-dot site-dot--deepseek" aria-hidden="true"></i><span><strong>DeepSeek</strong><small>chat.deepseek.com</small></span></span>
+            <input id="site-deepseek" type="checkbox">
+            <span class="switch" aria-hidden="true"></span>
+          </label>
+        </div>
+        <p class="group-footer">Clarification runs before every submission; code blocks, URLs, placeholders, and quoted text are protected.</p>
+      </section>
+    </form>
+  </main>
+  <script src="../core/settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
